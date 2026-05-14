@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { users } from "./fakeData/fakeUsers.js";
+import {router as apiRouter} from "./routes/v1/index.js";
 
 const app = express();
 
@@ -41,48 +42,50 @@ app.get("/", (req, res) => {
   </html>`);
 });
 
-app.get("/users", (req, res) => {
-  res.json({ users });
-});
+app.use("/api/v1", apiRouter);
 
-app.post("/users", (req, res) => {
-  const { username, email } = req.body || {};
+// app.get("/users", (req, res) => {
+//   res.json({ users });
+// });
 
-  if (!username || !email) {
-    return res.status(400).json({ error: "username and email are required" });
-  }
+// app.post("/users", (req, res) => {
+//   const { username, email } = req.body || {};
 
-  // Simple incremental string id based on current mock data
-  const nextId = String(
-    (users.reduce((max, u) => Math.max(max, Number(u.id)), 0) || 0) + 1,
-  );
+//   if (!username || !email) {
+//     return res.status(400).json({ error: "username and email are required" });
+//   }
 
-  const newUser = { id: nextId, username: username, email: email };
+//   // Simple incremental string id based on current mock data
+//   const nextId = String(
+//     (users.reduce((max, u) => Math.max(max, Number(u.id)), 0) || 0) + 1,
+//   );
 
-  users.push(newUser);
+//   const newUser = { id: nextId, username: username, email: email };
 
-  return res.status(201).json(newUser);
-});
+//   users.push(newUser);
 
-app.put("/users/:id", (req, res) => {
-  const user = users.find((u) => u.id === req.params.id);
+//   return res.status(201).json(newUser);
+// });
 
-  if (!user) {
-    return res.status(404).json({ error: "User not found" });
-  }
+// app.put("/users/:id", (req, res) => {
+//   const user = users.find((u) => u.id === req.params.id);
 
-  const { username, email, password } = req.body || {};
+//   if (!user) {
+//     return res.status(404).json({ error: "User not found" });
+//   }
 
-  if(!username || !email || !password){
-    return res.status(400).json({ error: "username, email, and password are required" });
-  }
+//   const { username, email, password } = req.body || {};
 
-  user.username = username;
-  user.email = email;
-  user.password = password;
+//   if(!username || !email || !password){
+//     return res.status(400).json({ error: "username, email, and password are required" });
+//   }
 
-  res.status(200).json(user);
-});
+//   user.username = username;
+//   user.email = email;
+//   user.password = password;
+
+//   res.status(200).json(user);
+// });
 
 // app.delete();
 
