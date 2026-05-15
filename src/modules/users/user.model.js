@@ -1,7 +1,3 @@
-import { users } from "../../fakeData/fakeUsers.js";
-
-export { users };
-
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -15,4 +11,3 @@ const userSchema = new mongoose.Schema(
 );
 
 export const User = mongoose.model("User", userSchema);
-
