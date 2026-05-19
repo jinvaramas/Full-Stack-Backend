@@ -7,7 +7,15 @@
       "Bash(Head -100)",
       "Bash(xargs ls -la)",
       "Bash(Remove-Item -Path \"c:\\\\Users\\\\User\\\\jsd12\\\\week_11\\\\jsd12-full-stack-app\\\\backend\\\\src\\\\middlewares\\\\errorHandler.js\" -Force)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git pull *)",
+      "Bash(git stash *)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(npm install *)"
     ]
   }
 }
